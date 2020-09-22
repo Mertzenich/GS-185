@@ -48,7 +48,9 @@ Outside the house you hear a nosie followed by hushed voices, they are very clos
 There are at least two people but probably more from the sound and the shadows, but it&#39;s hard to tell now that it&#39;s dark.
 
 [[Confront]]
-[[Retreat]]</tw-passagedata><tw-passagedata pid="14" name="Stay Inside" tags="" position="1255,681.5" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="15" name="Confront" tags="" position="1385,1147.5" size="100,100">Cautiously you walk towards the group. They don&#39;t look nearly as threatening now that you are getting used to the dark. They seem to be trying to get away from something. Announcing your presence you say &quot;Hey, you! What are you people doing out here? I don&#39;t want any trouble.&quot;
+[[Retreat]]</tw-passagedata><tw-passagedata pid="14" name="Stay Inside" tags="" position="1255,681.5" size="100,100">The voices outside slowly get quieter and disapear. 
+
+[[Return to family, you guys are running low on supplies-&gt;Return]]</tw-passagedata><tw-passagedata pid="15" name="Confront" tags="" position="1385,1147.5" size="100,100">Cautiously you walk towards the group. They don&#39;t look nearly as threatening now that you are getting used to the dark. They seem to be trying to get away from something. Announcing your presence you say &quot;Hey, you! What are you people doing out here? I don&#39;t want any trouble.&quot;
 
 A man who appears to be the leader of their group of four responds, &quot;We are just looking for somewhere safe to stay, we need to act fast someone or something is after us.&quot;
 
@@ -60,16 +62,54 @@ A man who appears to be the leader of their group of four responds, &quot;We are
 ]
 (if: $helpedbrother is true)[
 	Being back in the house you feel safer already. David can be heard snoring in the next room.
-]</tw-passagedata><tw-passagedata pid="17" name="Invite" tags="" position="1385,1297.5" size="100,100">&quot;My name&#39;s Chad. You can come over here, it&#39;s safe inside.&quot; you whisper to the group of 3 men and one woman, who&#39;s names are still unknown to you, waving them over.
+]
+[[Stay Inside]]</tw-passagedata><tw-passagedata pid="17" name="Invite" tags="" position="1385,1297.5" size="100,100">&quot;My name&#39;s Chad. You can come over here, it&#39;s safe inside.&quot; you whisper to the group of 3 men and one woman, who&#39;s names are still unknown to you, waving them over.
 
 They run towards you quietly as they can and enter, all breathing heavily.
-
+(set: $inquire to false)(set: $thirst to false)(set: $chaser to false)
 [[&quot;So, uhhh, who are you people?&quot;-&gt;Inquire]]
 [[&quot;Are you thirsty? We have some water but not much food.&quot;-&gt;Thirst]]
-[[&quot;Who...or what was it chasing you out there?&quot;-&gt;Chaser]]</tw-passagedata><tw-passagedata pid="18" name="Inquire" tags="" position="1235,1447.5" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="19" name="Thirst" tags="" position="1385,1447.5" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="20" name="Chaser" tags="" position="1535,1447.5" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="21" name="Go back" tags="" position="1548,1072.5" size="100,100">This could be dangerous, you think. You tell them to wait where they are.
+[[&quot;Who...or what was it chasing you out there?&quot;-&gt;Chaser]]</tw-passagedata><tw-passagedata pid="18" name="Inquire" tags="" position="1235,1447.5" size="100,100">(set: $inquire to true)&quot;I&#39;m Alex, this is Joseph, and she is Stacy,&quot; Alex, the aparent leader, responds after giving the question a short thought.
+
+(if: $thirst is false)[[[&quot;Are you thirsty? We have some water but not much food.&quot;-&gt;Thirst]]]
+(if: $chaser is false)[[[&quot;Who...or what was it chasing you out there?&quot;-&gt;Chaser]]]
+(if: $inquire is false)[[[&quot;So, uhhh, who are you people?&quot;-&gt;Inquire]]]
+(if: $inquire is true)[(if: $thirst is true)[(if: $chaser is true)[[[&quot;Did any of you get touched by the infected killer frogs?&quot;-&gt;infected]]]]]</tw-passagedata><tw-passagedata pid="19" name="Thirst" tags="" position="1385,1447.5" size="100,100">(set: $thirst to true)(if: $inquire is true)[&quot;I&#39;m not thirsty.&quot; Alex and Joseph state in unison. Stacy thinks for a momment and admits, &quot;I am a bit thirsty if it&#39;s not too much trouble.&quot; You give her the water.](if: $inquire is false)[&quot;I&#39;m not thirsty.&quot; the two men state in unison. The woman thinks for a moemnt and admits, &quot;I am a bit thirsty if it&#39;s not too much trouble.&quot; You give her the water.]
+
+(if: $thirst is false)[[[&quot;Are you thirsty? We have some water but not much food.&quot;-&gt;Thirst]]]
+(if: $chaser is false)[[[&quot;Who...or what was it chasing you out there?&quot;-&gt;Chaser]]]
+(if: $inquire is false)[[[&quot;So, uhhh, who are you people?&quot;-&gt;Inquire]]]
+(if: $inquire is true)[(if: $thirst is true)[(if: $chaser is true)[[[&quot;Did any of you get touched by the infected killer frogs?&quot;-&gt;infected]]]]]</tw-passagedata><tw-passagedata pid="20" name="Chaser" tags="" position="1535,1447.5" size="100,100">(set: $chaser to true)(if: $inquire is true)[&quot;Thank you for your hospitality. We were running back from a supply run when the killer frogs chased us.&quot; claims Joseph excitedly. Stacy nods approvingly (if: $thirst is true)[while gulping down the rest of the water in the bottle she&#39;d been given].](if: $inquire is false)[&quot;Thank you for your hospitality. We were running back from a supply run when the killer frogs chased us.&quot; claims the second man excitedly. The girl nods approvingly (if: $thirst is true)[while gulping down the rest of the water in the bottle she&#39;d been given].]
+
+(if: $thirst is false)[[[&quot;Are you thirsty? We have some water but not much food.&quot;-&gt;Thirst]]]
+(if: $chaser is false)[[[&quot;Who...or what was it chasing you out there?&quot;-&gt;Chaser]]]
+(if: $inquire is false)[[[&quot;So, uhhh, who are you people?&quot;-&gt;Inquire]]]
+(if: $inquire is true)[(if: $thirst is true)[(if: $chaser is true)[[[&quot;Did any of you get touched by the infected killer frogs?&quot;-&gt;infected]]]]]</tw-passagedata><tw-passagedata pid="21" name="Go back" tags="" position="1548,1072.5" size="100,100">This could be dangerous, you think. You tell them to wait where they are.
 
 [[Run back inside and lock the doors. Who knows what they&#39;re capable of.-&gt;Retreat]]
-[[Let them in when you go back to prevent any issues with the new group.-&gt;Invite]]</tw-passagedata></tw-storydata>
+[[Let them in when you go back to prevent any issues with the new group.-&gt;Invite]]</tw-passagedata><tw-passagedata pid="22" name="Return" tags="" position="1498,648.5" size="100,100">[[Go out and search for supplies-&gt;Supply Run]]
+[[Stay home (RISKY)-&gt;Starve]]</tw-passagedata><tw-passagedata pid="23" name="Supply Run" tags="" position="1700,717.5" size="100,100">You exit your home after waiting for any threat to pass. As you go out you see the large buildings in the near distance and the city skyline.
+
+In the distance you see two buildings that seem to be unlooted
+
+[[Pharmacy]]
+[[Hospital]]</tw-passagedata><tw-passagedata pid="24" name="Starve" tags="" position="1669,497.5" size="100,100">Your level of energy goes down every day you don&#39;t go outside. Now trying to go out will take the last of your willpower. Your brother is looking very tasty.
+
+[[Eat your brother-&gt;EatBrother]]
+[[Starve to Death-&gt;DeadStarve]]</tw-passagedata><tw-passagedata pid="25" name="EatBrother" tags="" position="1831,588.5" size="100,100">Your hunger makes you rid yourself of your humanity to justify murdering and eating your brother. You, or your brother for that matter, won&#39;t ever be the same again.
+
+[[Supply Run]]</tw-passagedata><tw-passagedata pid="26" name="DeadStarve" tags="" position="1827,420.5" size="100,100">You starved but at least you died without having become a cannibal.
+[[Supply Run]]</tw-passagedata><tw-passagedata pid="27" name="Pharmacy" tags="" position="1625,867.5" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="28" name="Hospital" tags="" position="1775,867.5" size="100,100">You get to the hospital and it seems worn down and eerily quiet. As you head closer you hear someone screaming in pain.
+
+[[Investigate Screams]]
+[[Ignore the screaming and continue onward.]]</tw-passagedata><tw-passagedata pid="29" name="Investigate Screams" tags="" position="1700,1017.5" size="100,100">As you head closer to the screams, it suddenly turns into heavy breathing and it draws closer and closer to you.
+
+[[Fight]] or [[Flight]]</tw-passagedata><tw-passagedata pid="30" name="Ignore the screaming and continue onward." tags="" position="1850,1017.5" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="31" name="Fight" tags="" position="1625,1192.5" size="100,100">As you prepare for a fight you realize your fatal mistake at the last second. As you swing around you get bitten in the neck from behind. Seering pain shoots through your body as you meet your end.</tw-passagedata><tw-passagedata pid="32" name="Flight" tags="" position="1785,1197.5" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="33" name="infected" tags="" position="1404,1633.5" size="100,100">Looking at other the entire group shakes their heads no and confirms verbally to you that none of them had been touched or infected. Alex seemed to be surprised by the question, you wonder if he&#39;s hiding something. If infected he could kill you all very quickly.
+
+[[Shoot them all immeitedly in the head. they might have been infected, plus you could use the extra supplies-&gt;Shoota]]
+[[Trust them-&gt;Trust]]</tw-passagedata><tw-passagedata pid="34" name="Shoota" tags="" position="1329,1783.5" size="100,100">POP! POP! POP!
+
+You did what must be done to ensure your safety. Looting their bodies you find that your suspicion was true: the infection was spreading over Alex&#39;s body. Their resources will keep you and your brother from starving.</tw-passagedata><tw-passagedata pid="35" name="Trust" tags="" position="1479,1783.5" size="100,100">Trusting them you must move forward in your journey together. You&#39;ll keep a close eye on Alex.</tw-passagedata></tw-storydata>
 
 <script title="Twine engine code" data-main="harlowe">"use strict";function _defineProperty(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}var _slicedToArray=function(){function e(e,t){var n=[],r=!0,i=!1,o=void 0;try{for(var a,s=e[Symbol.iterator]();!(r=(a=s.next()).done)&&(n.push(a.value),!t||n.length!==t);r=!0);}catch(e){i=!0,o=e}finally{try{!r&&s.return&&s.return()}finally{if(i)throw o}}return n}return function(t,n){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return e(t,n);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};!function(){/**
  * @license almond 0.3.3 Copyright jQuery Foundation and other contributors.
